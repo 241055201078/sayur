@@ -9,4 +9,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'login')->name('login');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::Middleware(['auth', 'checkrole'])->group(function(){
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+});
